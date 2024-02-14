@@ -1,0 +1,60 @@
+﻿@model Library.ViewModels.BorrowingBooksViewModel
+
+@{
+    ViewData["Title"] = "Library records";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                BorrowingRecordID
+            </th>
+            <th>
+                StudentID
+            </th>
+            <th>
+                BookID
+            </th>
+            <th>
+                BorrowingDate
+            </th>
+            <th>
+                ReturnDate
+            </th>
+            <th>
+               Fine in $
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BorrowingBooks) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.BorrowingRecordID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Fine)
+            </td>
+            <td>
+                    <a asp-action="Remove" asp-route-id="@item.BorrowingRecordID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

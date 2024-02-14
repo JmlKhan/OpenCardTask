@@ -1,0 +1,52 @@
+﻿@model Library.ViewModels.PublisherViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Add" class="btn btn-outline-info ml-auto" role="button">New Publisher</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                PublisherID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                ContactInfo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Publishers) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublisherID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactInfo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PublisherID">Edit</a> |
+                <a asp-action="Remove" asp-route-id="@item.PublisherID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

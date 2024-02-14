@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Book_Author>
+
+@{
+    ViewData["Title"] = "Assign Book to Author";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="WriteBook" method="post" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="authorId">Select Author:</label>
+                <select class="form-control" id="authorId" name="authorId">
+                    @foreach (var author in ViewBag.Authors)
+                    {
+                        <option value="@author.AuthorID">@author.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bookId">Select Book:</label>
+                <select class="form-control" id="bookID" name="bookID">
+                    @foreach (var book in ViewBag.Books)
+                    {
+                        <option value="@book.BookID">@book.Title</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Assign Book</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

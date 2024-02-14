@@ -1,0 +1,63 @@
+﻿@model Library.ViewModels.StudentViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+
+<h2 class=" text-center">Student List</h2>
+
+<div class="container-fluid">
+
+    <table class="table">
+        <caption>
+            @(Model.Students.Length == 0 ? "Empty" : Model.Students.Length.ToString()) rows
+            <a asp-action="Add" class="btn btn-outline-info ml-auto" role="button">New Student</a>
+
+        </caption>
+
+        <thead>
+            <tr>
+                <th>
+                    StudentID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Address
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(_ => student.StudentID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => student.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => student.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(_ => student.Address)
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a asp-action="Edit" asp-route-id="@student.StudentID" class="btn btn-light" role="button" title="Edit">✎</a>
+                            <a asp-action="Remove" asp-route-id="@student.StudentID" class="btn btn-light" role="button" title="Remove"
+                               onclick="return confirm('Are you sure?');">🗑</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
